@@ -11,7 +11,7 @@
 
 // let zero = document.querySelector('circle');
 // console.log(zero.getTotalLength());
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', () => {
 	let
 		startGameBtn = document.querySelector('.js-game-menu-btn'),
 		game = document.querySelector('#game'),
@@ -64,22 +64,6 @@ window.onload = function () {
 		count++;
 	}
 
-	function init(e) {
-		stepCross(e.target);
-		AIPlay();
-		win();
-	}
-
-	function newGame() {
-		count = 0;
-		result.innerText = '';
-		fields.forEach(el => {
-			el.innerHTML = '';
-			el.classList.remove('x', 'o', 'active');
-		});
-		game.addEventListener('click', init);
-	}
-
 	function win() {
 		let comb = [
 			[0, 1, 2],
@@ -114,11 +98,31 @@ window.onload = function () {
 				}
 			}, 5000);
 		}
-
 	}
 
+	function init(e) {
+		stepCross(e.target);
+		AIPlay();
+		win();
+	}
+
+	function newGame() {
+		count = 0;
+		result.innerText = '';
+		fields.forEach(el => {
+			el.innerHTML = '';
+			el.classList.remove('x', 'o', 'active');
+		});
+		game.addEventListener('click', init);
+	}
+
+	document.body.addEventListener('keydown', (e) => {
+		if (e.key == "Enter") {
+			startGame();
+		}
+	});
 	startGameBtn.addEventListener('click', startGame);
 	game.addEventListener('click', init);
 	playAgain.addEventListener('click', newGame);
 	exitGame.addEventListener('click', exit);
-}
+});
