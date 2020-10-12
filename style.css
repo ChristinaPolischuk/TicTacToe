@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Arbutus");
 *,
 *::before,
 *::after {
@@ -7,6 +8,7 @@
 body {
 	padding: 0;
 	margin: 0;
+	font-family: Arbutus;
 }
 
 .wrapper {
@@ -15,17 +17,106 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/* background: linear-gradient(rgba(0, 0, 0, 0.4), transparent 1px),
-		linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent 1px); */
-	background-size: 30px 30px;
+	background: url("img/bg.jpg") no-repeat center;
+	background-size: cover;
+	/* position: relative; */
 }
 
-.result {
-	height: 50px;
-	color: green;
+/* *** Game menu *** */
+#game-menu-container {
+	position: fixed;
+	display: table;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	transform: scale(1);
+	z-index: 1;
+}
+#game-menu-container.on {
+	transform: scale(1);
+	animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#game-menu-container.on.out {
+	transform: scaleY(0.01) scaleX(0);
+	animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#game-menu-container .game-menu__background {
+	display: table-cell;
+	background: rgba(0, 0, 0, 0.9);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.game-menu__title {
+	margin-bottom: 30px;
+	font-weight: 400;
+	font-size: 65px;
+	line-height: 65px;
+	color: #fff;
+}
+
+@keyframes unfoldIn {
+	0% {
+		transform: scaleY(0.005) scaleX(0);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+@keyframes unfoldOut {
+	0% {
+		transform: scaleY(1) scaleX(1);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(0.005) scaleX(0);
+	}
+}
+
+/* *** Game *** */
+.game-menu {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.game-menu__container {
+	height: 64px;
+}
+
+.game-menu__btn {
+	width: 162px;
+	margin: 5px;
+	cursor: pointer;
+	border: none;
+	padding: 15px;
+	background-color: #ffffff;
+	font-size: 20px;
+	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 40px;
-	font-family: Arial, sans-serif;
+	letter-spacing: 1px;
+	border-radius: 2px;
+}
+
+.game-menu__btn.scale {
+	transform: scale(0);
+	transition: transform 0.3s;
+}
+
+.game-menu__btn.scale.active {
+	transform: scale(1.1);
 }
 
 .game {
@@ -41,11 +132,12 @@ body {
 	width: 120px;
 	height: 120px;
 	border: 2px solid #000;
+	background-color: #ffffff;
 	cursor: pointer;
 }
 
 .game__field.active {
-	background-color: rgba(0, 255, 0, 0.5);
+	background-color: rgba(0, 255, 0, 0.95);
 }
 
 .new-game {
@@ -79,6 +171,12 @@ body {
 
 .cross__last {
 	animation-delay: 0.5s;
+}
+
+.result {
+	height: 50px;
+	color: lime;
+	font-size: 55px;
 }
 
 @keyframes draw {

@@ -11,6 +11,13 @@
 <body>
 
 	<div class="wrapper">
+		<div id="game-menu-container">
+			<div class="game-menu__background">
+				<h2 class="game-menu__title">Press Enter to start the game</h2>
+				<button id="on" class="game-menu__btn js-game-menu-btn">Start Game</button>
+			</div>
+		</div>
+
 		<div class="result" id="result"></div>
 		<div class="game" id="game">
 			<div class="game__field js-game-field"></div>
@@ -23,7 +30,10 @@
 			<div class="game__field js-game-field"></div>
 			<div class="game__field js-game-field"></div>
 		</div>
-		<button class="new-game" id="new-game">Новая игра</button>
+		<div class="game-menu__container">
+			<button class="game-menu__btn scale" id="#play-again">Play Again</button>
+			<button class="game-menu__btn scale" id="#exit-game">Exit Game</button>
+		</div>
 	</div>
 
 	<script src="app.js"></script>
