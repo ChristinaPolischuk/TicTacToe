@@ -9,6 +9,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: Arbutus;
+	overflow-x: hidden;
 }
 
 .wrapper {
@@ -20,6 +21,39 @@ body {
 	background: url("img/bg.jpg") no-repeat center;
 	background-size: cover;
 	/* position: relative; */
+}
+
+/* *** Video *** */
+#page-content {
+	position: absolute;
+	/* this element's width controls the effective height */
+	/* of the video container's padding-bottom */
+	width: 100%;
+	transform: scale(0);
+	transition: transform 0.5s;
+}
+
+#video-container {
+	position: relative;
+	/* forces the container to match a 16x9 aspect ratio */
+	/* replace with 75% for a 4:3 aspect ratio, if needed */
+	padding-bottom: 56.25%;
+}
+
+#video-element {
+	/* forces the contents to fill the container */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#ad-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 }
 
 /* *** Game menu *** */
@@ -93,7 +127,12 @@ body {
 }
 
 .game-menu__container {
-	height: 64px;
+	transform: scale(0);
+	transition: transform 0.3s;
+}
+
+.game-menu__container.show {
+	transform: scale(1.1);
 }
 
 .game-menu__btn {
@@ -108,15 +147,6 @@ body {
 	font-weight: 700;
 	letter-spacing: 1px;
 	border-radius: 2px;
-}
-
-.game-menu__btn.scale {
-	transform: scale(0);
-	transition: transform 0.3s;
-}
-
-.game-menu__btn.scale.active {
-	transform: scale(1.1);
 }
 
 .game {
@@ -134,6 +164,10 @@ body {
 	border: 2px solid #000;
 	background-color: #ffffff;
 	cursor: pointer;
+}
+
+.game__field.step {
+	background-color: lemonchiffon;
 }
 
 .game__field.active {
@@ -159,7 +193,7 @@ body {
 .zero {
 	stroke-dasharray: 283;
 	stroke-dashoffset: 283;
-	animation: draw 0.5s forwards;
+	animation: draw 0.5s 1.5s forwards;
 }
 
 .cross__first,
